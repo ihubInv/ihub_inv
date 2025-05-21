@@ -1,0 +1,7 @@
+{
+  "/superadmin/dashboard/page": "app/superadmin/dashboard/page.js",
+  "/user/new-request/page": "app/user/new-request/page.js",
+  "/page": "app/page.js",
+  "/superadmin/categories/page": "app/superadmin/categories/page.js",
+  "/superadmin/assets/page": "app/superadmin/assets/page.js"
+}
