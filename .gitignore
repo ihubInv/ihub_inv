@@ -1,27 +1,31 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Ignore node_modules in all projects
+node_modules/
 
-# dependencies
-node_modules
+# Ignore .next build output from frontend
+inv_frontend/.next/
 
-# next.js
-.next
-/out/
+# Ignore frontend build if any
+inv_frontend/out/
+inv_frontend/build/
 
-# production
-/build
+# Ignore backend build if any
+inv_backend/dist/
+inv_backend/build/
 
-# debug
+# Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pnpm-debug.log*
+pnpm-debug.log*
 
-# env files
+# Ignore environment files
 .env*
+inv_frontend/.env*
+inv_backend/.env*
 
-# vercel
-.vercel
+# Ignore Vercel
+.vercel/
 
-# typescript
+# TypeScript build info
 *.tsbuildinfo
 next-env.d.ts
