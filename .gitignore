@@ -1,31 +1,33 @@
-# Ignore node_modules in all projects
+# === Node.js Dependencies ===
 node_modules/
 
-# Ignore .next build output from frontend
+# === Next.js build output ===
 inv_frontend/.next/
-
-# Ignore frontend build if any
 inv_frontend/out/
 inv_frontend/build/
 
-# Ignore backend build if any
+# === Backend build output ===
 inv_backend/dist/
 inv_backend/build/
 
-# Logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-
-# Ignore environment files
+# === Environment Variables ===
 .env*
 inv_frontend/.env*
 inv_backend/.env*
 
-# Ignore Vercel
+# === Logs ===
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# === Vercel deployment folder ===
 .vercel/
 
-# TypeScript build info
+# === TypeScript build info ===
 *.tsbuildinfo
 next-env.d.ts
+
+# === IDE/editor configs ===
+.vscode/
+.idea/
+.DS_Store
