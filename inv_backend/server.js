@@ -12,6 +12,7 @@ const userRoutes = require("./routes/users")
 const requestRoutes = require("./routes/requests")
 const assetRoutes = require("./routes/assets")
 const categoryRoutes = require("./routes/categories")
+const dashboardRoutes = require("./routes/dashboard")
 
 // Initialize express app
 const app = express()
