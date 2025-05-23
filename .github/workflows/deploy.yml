@@ -1,0 +1,28 @@
+name: Deploy to Hostinger VPS
+
+on:
+  push:
+    branches:
+      - main  # Adjust if you use a different default branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Deploy via SSH
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: 88.222.245.211
+        username: root
+        key: ${{ secrets.VPS_SSH_KEY }}
+        port: 22
+        script: |
+          cd ihu-inv  # Replace with your actual folder name
+          git pull origin main
+          docker-compose down
+          docker-compose build
+          docker-compose up -d
