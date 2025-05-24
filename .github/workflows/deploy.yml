@@ -18,7 +18,7 @@ jobs:
       with:
         host: 31.97.60.2
         username: root
-        key: ${{ secrets.VPS_SSH_KEY }}
+        key: ${{ secrets.SSH_KEY }}
         port: 22
         script: |
           cd ihu-inv  # Replace with your actual folder name
