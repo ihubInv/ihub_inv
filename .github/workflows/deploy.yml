@@ -22,7 +22,7 @@ jobs:
         port: 22
         script: |
           set -e  # Fail if any command fails
-          cd ihu-inv  # Replace with your actual folder name
+          cd /home/rohit/ihu-inv  # Replace with your actual folder name
           git pull origin main
           docker-compose down
           docker-compose build
