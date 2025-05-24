@@ -28,7 +28,7 @@ export default function LoginForm() {
 
 
   const handleSubmit = async (e: React.FormEvent) => {
-    debugger
+    
     e.preventDefault()
 
 
@@ -150,7 +150,7 @@ export default function LoginForm() {
             Register
           </Link>
         </div> */}
-{/*         <motion.div
+        <motion.div
           className="text-xs text-center text-muted-foreground"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -162,7 +162,7 @@ export default function LoginForm() {
           <Link href="/admin/register" className="text-primary/70 hover:underline">
             Register as Admin
           </Link>
-        </motion.div> */}
+        </motion.div>
       </CardFooter>
     </Card>
   )
