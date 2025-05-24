@@ -7,7 +7,7 @@ import { authenticationSlice } from '../slices/auth.slice';
 
 
 export const selectAuthState = (state: any) => {
-  debugger
+  
   return state[authenticationSlice.name];
 };
 
