@@ -7,8 +7,6 @@ services:
     container_name: inv-backend
     ports:
       - "5000:5000"
-    env_file:
-      - ./inv_backend/.env
     restart: always
     environment:
       - NODE_ENV=production
