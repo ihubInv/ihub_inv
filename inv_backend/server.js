@@ -30,8 +30,7 @@ app.use(cors(corsOptions));
 app.use(express.json())
 
 // Connect to MongoDB
-const uri = "mongodb+srv://inventory:ihub_Inventory@cluster0.ix8dgtz.mongodb.net/";
-// "mongodb+srv://rksaklani90:rksaklani90@cluster0.gap6l.mongodb.net/"
+const uri = process.env.MONGO_URI;
 mongoose
   .connect(uri)
   .then(() => console.log("MongoDB connected successfully"))
