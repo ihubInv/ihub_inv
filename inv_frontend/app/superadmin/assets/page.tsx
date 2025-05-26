@@ -426,7 +426,7 @@ export default function Assets() {
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
           <h1 className="text-2xl font-bold">Asset Management</h1>
           <div className="mt-4 flex space-x-2 sm:mt-0">
-            <NeonButton
+            {/* <NeonButton
               variant="neon"
               size="sm"
               onClick={() => setShowAdvancedFilter(true)}
@@ -437,9 +437,9 @@ export default function Assets() {
               {activeFilters.length > 0 && (
                 <Badge className="ml-1 h-5 w-5 p-0 flex items-center justify-center">{activeFilters.length}</Badge>
               )}
-            </NeonButton>
+            </NeonButton> */}
 
-            <NeonButton
+            {/* <NeonButton
               variant="neon"
               size="sm"
               onClick={() => setShowPivot(!showPivot)}
@@ -447,7 +447,7 @@ export default function Assets() {
             >
               <BarChart className="h-4 w-4" />
               Pivot Table
-            </NeonButton>
+            </NeonButton> */}
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
