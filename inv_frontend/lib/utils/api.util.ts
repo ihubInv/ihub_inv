@@ -97,7 +97,8 @@ import { authenticationSlice } from "../store/slices/auth.slice";
 // import { useToaster } from "../context/use-toaster";
 
 // Base URL
-const apiBaseUrl = "http://localhost:5000";
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL;
+console.log(apiBaseUrl);
 const baseUrl = `${apiBaseUrl}`;
 
 // Mutex to handle concurrent requests
