@@ -98,7 +98,7 @@ export default function Header() {
           {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
         </motion.button>
 
-        <Popover open={showNotifications} onOpenChange={setShowNotifications}>
+        {/* <Popover open={showNotifications} onOpenChange={setShowNotifications}>
           <PopoverTrigger asChild>
             <div className="relative">
               <NeonButton variant="neon" size="icon">
@@ -140,7 +140,7 @@ export default function Header() {
               )}
             </div>
           </PopoverContent>
-        </Popover>
+        </Popover> */}
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
