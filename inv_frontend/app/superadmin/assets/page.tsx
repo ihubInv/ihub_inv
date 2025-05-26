@@ -137,14 +137,14 @@ const pivotFields = {
 export default function Assets() {
   const { addNotification } = useToaster()
 
-  const { data: products,refetch:refetchCategoryList } = useGetProductsQuery(undefined, {
+  const { data: products, refetch: refetchCategoryList } = useGetProductsQuery(undefined, {
     refetchOnMountOrArgChange: true,
   });
   const { data: categoryList } = useGetCategoryQuery(undefined, {
     refetchOnMountOrArgChange: true,
   });
   // console.log("products LIST:>>>>", products?.data)
-  
+
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredAssets, setFilteredAssets] = useState<any>(products?.data);
   const [showPivot, setShowPivot] = useState(false)
@@ -177,62 +177,62 @@ export default function Assets() {
 
 
 
-  function formatDate(dateString:any) {
+  function formatDate(dateString: any) {
     if (!dateString) {
       return "Invalid Date"; // Return an error message if the date is empty or undefined
     }
-    
+
     const date = new Date(dateString);
-    
+
     // Check if the date is invalid
     if (isNaN(date.getTime())) {
       return "Invalid Date"; // Return an error message if the date is invalid
     }
-  
+
     const day = String(date.getDate()).padStart(2, '0'); // Ensure two digits for day
     const month = String(date.getMonth() + 1).padStart(2, '0'); // Get month and pad if needed
     const year = date.getFullYear(); // Get the year
-    
+
     return `${day}-${month}-${year}`;
   }
-  
 
-const applyFilters = () => {
-  let data = allAssetsRef.current;
 
-  if (searchTerm.trim()) {
-    const lowerTerm = searchTerm.toLowerCase();
-    data = data.filter((item: any) =>
-      Object.values(item).some((value: any) =>
-        String(value ?? "").toLowerCase().includes(lowerTerm)
-      )
-    );
-  }
+  const applyFilters = () => {
+    let data = allAssetsRef.current;
 
-  if (activeFilters.length > 0) {
-    data = data.filter((asset: any) =>
-      activeFilters.every(({ field, operator, value }) => {
-        const fieldVal = String(asset?.[field] ?? "").toLowerCase();
-        const val = String(value ?? "").toLowerCase();
+    if (searchTerm.trim()) {
+      const lowerTerm = searchTerm.toLowerCase();
+      data = data.filter((item: any) =>
+        Object.values(item).some((value: any) =>
+          String(value ?? "").toLowerCase().includes(lowerTerm)
+        )
+      );
+    }
 
-        switch (operator) {
-          case "contains": return fieldVal.includes(val);
-          case "equals": return fieldVal === val;
-          case "startsWith": return fieldVal.startsWith(val);
-          case "endsWith": return fieldVal.endsWith(val);
-          case "notEquals": return fieldVal !== val;
-          case "greaterThan": return Number(asset[field]) > Number(value);
-          case "lessThan": return Number(asset[field]) < Number(value);
-          case "before": return new Date(asset[field]) < new Date(value);
-          case "after": return new Date(asset[field]) > new Date(value);
-          default: return true;
-        }
-      })
-    );
-  }
+    if (activeFilters.length > 0) {
+      data = data.filter((asset: any) =>
+        activeFilters.every(({ field, operator, value }) => {
+          const fieldVal = String(asset?.[field] ?? "").toLowerCase();
+          const val = String(value ?? "").toLowerCase();
 
-  setFilteredAssets(data);
-};
+          switch (operator) {
+            case "contains": return fieldVal.includes(val);
+            case "equals": return fieldVal === val;
+            case "startsWith": return fieldVal.startsWith(val);
+            case "endsWith": return fieldVal.endsWith(val);
+            case "notEquals": return fieldVal !== val;
+            case "greaterThan": return Number(asset[field]) > Number(value);
+            case "lessThan": return Number(asset[field]) < Number(value);
+            case "before": return new Date(asset[field]) < new Date(value);
+            case "after": return new Date(asset[field]) > new Date(value);
+            default: return true;
+          }
+        })
+      );
+    }
+
+    setFilteredAssets(data);
+  };
 
 
   const handleAdvancedFilterApply = (filters: any[]) => {
@@ -336,26 +336,26 @@ const applyFilters = () => {
     // addAndCheckCategory(inventoryData, worksheet);
 
 
-   // Add data rows
-   const dataRows = filteredAssets?.map((asset: any) => ({
-    SessionStartDate: formatDate(asset.SessionStartDate),
-    SessionEndDate: formatDate(asset.SessionEndDate),
-    UniID: asset.UniID,
-    PurchaseDate: formatDate(asset.PurchaseDate),
-    InvoiceNumber: asset.InvoiceNumber,
-    AssetName: asset.AssetName,
-    Make: asset.Make,
-    Model: asset.Model,
-    SerialNumber: asset.ProductSerialNumber || asset.SerialNumber,
-    VendorName: asset.VendorName,
-    Quantity: asset.Quantity,
-    RateIncludingTaxes: asset.RateIncludingTaxes,
-    category: asset.Category?.name,
-    SimilarName: asset.SimilarName,
-    IssuedTo: asset.IssuedTo,
-  }));
+    // Add data rows
+    const dataRows = filteredAssets?.map((asset: any) => ({
+      SessionStartDate: formatDate(asset.SessionStartDate),
+      SessionEndDate: formatDate(asset.SessionEndDate),
+      UniID: asset.UniID,
+      PurchaseDate: formatDate(asset.PurchaseDate),
+      InvoiceNumber: asset.InvoiceNumber,
+      AssetName: asset.AssetName,
+      Make: asset.Make,
+      Model: asset.Model,
+      SerialNumber: asset.ProductSerialNumber || asset.SerialNumber,
+      VendorName: asset.VendorName,
+      Quantity: asset.Quantity,
+      RateIncludingTaxes: asset.RateIncludingTaxes,
+      category: asset.Category?.name,
+      SimilarName: asset.SimilarName,
+      IssuedTo: asset.IssuedTo,
+    }));
 
-  worksheet.addRows(dataRows);
+    worksheet.addRows(dataRows);
 
 
     worksheet.getRow(1).eachCell((cell) => {
@@ -405,20 +405,20 @@ const applyFilters = () => {
     });
   };
 
-function toInputDateValue(dateString: any) {
-  if (!dateString) return "";
-  // If already in yyyy-mm-dd, return as is
-  if (/^\d{4}-\d{2}-\d{2}$/.test(dateString)) return dateString;
-  // If in dd-mm-yyyy, convert to yyyy-mm-dd
-  if (/^\d{2}-\d{2}-\d{4}$/.test(dateString)) {
-    const [day, month, year] = dateString.split("-");
-    return `${year}-${month}-${day}`;
+  function toInputDateValue(dateString: any) {
+    if (!dateString) return "";
+    // If already in yyyy-mm-dd, return as is
+    if (/^\d{4}-\d{2}-\d{2}$/.test(dateString)) return dateString;
+    // If in dd-mm-yyyy, convert to yyyy-mm-dd
+    if (/^\d{2}-\d{2}-\d{4}$/.test(dateString)) {
+      const [day, month, year] = dateString.split("-");
+      return `${year}-${month}-${day}`;
+    }
+    // Try to parse with Date
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) return "";
+    return date.toISOString().slice(0, 10);
   }
-  // Try to parse with Date
-  const date = new Date(dateString);
-  if (isNaN(date.getTime())) return "";
-  return date.toISOString().slice(0, 10);
-}
 
   return (
     <SuperAdminLayout>
@@ -555,7 +555,7 @@ function toInputDateValue(dateString: any) {
                       </TableCell>
                     </TableRow>
                   ) : (
-                    filteredAssets?.map((asset:any,i:any) => (
+                    filteredAssets?.map((asset: any, i: any) => (
                       <TableRow key={asset._id || i}>
                         <TableCell>{asset.UniID}</TableCell>
                         <TableCell className="hidden lg:table-cell">{formatDate((asset as any)?.SessionStartDate)}</TableCell>
@@ -566,11 +566,11 @@ function toInputDateValue(dateString: any) {
                         </TableCell>
                         <TableCell className="hidden lg:table-cell">{(asset as any)?.Make}</TableCell>
                         <TableCell className="hidden lg:table-cell">{(asset as any)?.Model}</TableCell>
-                        <TableCell className="hidden xl:table-cell">{ formatDate((asset as any)?.PurchaseDate)}</TableCell>
+                        <TableCell className="hidden xl:table-cell">{formatDate((asset as any)?.PurchaseDate)}</TableCell>
                         <TableCell className="hidden lg:table-cell">{(asset as any)?.ProductSerialNumber}</TableCell>
                         <TableCell className="hidden lg:table-cell">{(asset as any)?.VendorName}</TableCell>
                         <TableCell className="hidden lg:table-cell">{(asset as any)?.IssuedTo}</TableCell>
-                        
+
                         <TableCell>{(asset as any)?.Quantity}</TableCell>
                         <TableCell className="hidden md:table-cell">{(asset as any).RateIncludingTaxes?.toLocaleString()}</TableCell>
                         <TableCell>
@@ -627,16 +627,85 @@ function toInputDateValue(dateString: any) {
               </label>
               <label className="block">
                 <span className="mb-1 block font-medium">Start Date</span>
-                <Input name="SessionStartDate" type="date" value={toInputDateValue(editForm.SessionStartDate)} onChange={handleEditFormChange} />
+                <div
+                  className="space-y-2 cursor-pointer"
+                  onClick={() => {
+                    const element = document.getElementById("SessionStartDate") as HTMLInputElement;
+                    if (element) {
+                      try {
+                        element.showPicker();
+                      } catch {
+                        element.focus(); // Fallback for older browsers
+                      }
+                    }
+                  }}
+                >
+                <Input 
+                name="SessionStartDate" 
+                id="SessionStartDate" 
+                type="date" 
+                value={toInputDateValue(editForm.SessionStartDate)} 
+                onChange={handleEditFormChange}
+                className="w-full cursor-pointer text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded px-2 py-2"
+                
+                />
+                </div>
               </label>
               <label className="block">
                 <span className="mb-1 block font-medium">End Date</span>
-                <Input name="SessionEndDate" type="date" value={toInputDateValue(editForm.SessionEndDate)} onChange={handleEditFormChange} />
+                <div
+                  className="space-y-2 cursor-pointer"
+                  onClick={() => {
+                    const element = document.getElementById("SessionEndDate") as HTMLInputElement;
+                    if (element) {
+                      try {
+                        element.showPicker();
+                      } catch {
+                        element.focus(); // Fallback for older browsers
+                      }
+                    }
+                  }}
+                >
+                <Input
+                 name="SessionEndDate" 
+                 id="SessionEndDate"
+                  type="date"
+                   value={toInputDateValue(editForm.SessionEndDate)} 
+                   onChange={handleEditFormChange}
+                   className="w-full cursor-pointer text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded px-2 py-2"
+                   
+                   />
+                </div>
               </label>
               <label className="block">
-                <span className="mb-1 block font-medium">Purchase Date</span>
-                <Input name="PurchaseDate" type="date" value={toInputDateValue(editForm.PurchaseDate)} onChange={handleEditFormChange} />
+                <span className="mb-1 block font-medium text-gray-800 dark:text-gray-200">
+                  Purchase Date
+                </span>
+
+                <div
+                  className="space-y-2 cursor-pointer"
+                  onClick={() => {
+                    const element = document.getElementById("PurchaseDate") as HTMLInputElement;
+                    if (element) {
+                      try {
+                        element.showPicker();
+                      } catch {
+                        element.focus(); // Fallback for older browsers
+                      }
+                    }
+                  }}
+                >
+                  <Input
+                    id="PurchaseDate"
+                    name="PurchaseDate"
+                    type="date"
+                    value={toInputDateValue(editForm.PurchaseDate)}
+                    onChange={handleEditFormChange}
+                    className="w-full cursor-pointer text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded px-2 py-2"
+                  />
+                </div>
               </label>
+
               <label className="block">
                 <span className="mb-1 block font-medium">Invoice Number</span>
                 <Input name="InvoiceNumber" value={editForm.InvoiceNumber || ''} onChange={handleEditFormChange} />
@@ -666,12 +735,18 @@ function toInputDateValue(dateString: any) {
                 <Input name="RateIncludingTaxes" type="number" value={editForm.RateIncludingTaxes || ''} onChange={handleEditFormChange} />
               </label>
               <label className="block">
-                <span className="mb-1 block font-medium">Category</span>
+                <span className="mb-1 block font-medium text-gray-800 dark:text-gray-200">
+                  Category
+                </span>
                 <select
                   name="Category"
                   value={editForm.Category || ''}
                   onChange={handleEditFormChange}
-                  className="w-full border rounded px-2 py-2"
+                  className="w-full border border-gray-300 dark:border-gray-600 
+               rounded px-2 py-2 
+               bg-white dark:bg-gray-800 
+               text-gray-900 dark:text-gray-100 
+               focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   <option value="">Select Category</option>
                   {categories.map((cat: any) => (
@@ -681,6 +756,7 @@ function toInputDateValue(dateString: any) {
                   ))}
                 </select>
               </label>
+
               <label className="block">
                 <span className="mb-1 block font-medium">Similar Name</span>
                 <Input name="SimilarName" value={editForm.SimilarName || ''} onChange={handleEditFormChange} />
