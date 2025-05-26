@@ -199,19 +199,32 @@ exports.createCategory = async (req, res) => {
 // @desc    Get all categories
 // @route   GET /api/categories
 // @access  Private
+
+
+
 exports.getCategories = async (req, res) => {
   try {
+    // Fetch all categories
     const categories = await Category.find().sort("name");
 
-    const categoriesWithCount = await Promise.all(
-      categories.map(async (category) => {
-        const count = await Asset.countDocuments({ category: category._id });
-        return {
-          ...category.toObject(),
-          assetCount: count,
-        };
-      })
-    );
+    // Fetch all assets and build a map of category ID to count
+    const assets = await Asset.find().select('Category');
+    const categoryCountMap = new Map();
+
+    for (const asset of assets) {
+      const catId = asset.Category?._id?.toString();
+      if (catId) {
+        categoryCountMap.set(catId, (categoryCountMap.get(catId) || 0) + 1);
+      }
+    }
+
+    // Create response including asset count (even 0)
+    const categoriesWithCount = categories.map((category) => ({
+      _id: category._id,
+      name: category.name,
+      type: category.type,
+      assetCount: categoryCountMap.get(category._id.toString()) || 0,
+    }));
 
     res.status(200).json({
       success: true,
@@ -219,13 +232,14 @@ exports.getCategories = async (req, res) => {
       data: categoriesWithCount,
     });
   } catch (error) {
-    console.error(error);
+    console.error('Error in getCategories:', error);
     res.status(500).json({
       success: false,
       message: "Server Error",
     });
   }
 };
+
 
 // @desc    Get single category
 // @route   GET /api/categories/:id
