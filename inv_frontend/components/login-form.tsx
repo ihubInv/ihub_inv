@@ -156,9 +156,9 @@ export default function LoginForm() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
         >
-          <Link href="/superadmin/register" className="text-primary/70 hover:underline">
+          {/* <Link href="/superadmin/register" className="text-primary/70 hover:underline">
             Register as SuperAdmin
-          </Link><br />
+          </Link><br /> */}
           {/* <Link href="/admin/register" className="text-primary/70 hover:underline">
             Register as Admin
           </Link> */}

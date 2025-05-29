@@ -540,8 +540,8 @@ export default function RegisterPage() {
                   </SelectTrigger>
                   <SelectContent className="bg-card/90 backdrop-blur-md border-border/50">
                     <SelectItem value="user" defaultValue="user">User</SelectItem>
-                    <SelectItem value="admin" disabled>Admin</SelectItem>
-                    <SelectItem value="superadmin" disabled>Super Admin</SelectItem>
+                    {/* <SelectItem value="admin" >Admin</SelectItem> */}
+                    <SelectItem value="superadmin" >Super Admin</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
