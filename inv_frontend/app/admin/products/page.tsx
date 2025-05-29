@@ -172,14 +172,14 @@ export default function Products() {
 
   const exportToCSV = () => {
     // Create CSV content
-    const headers = ["ID", "Name", "Make", "Model", "Serial", "Quantity", "Issued To"]
+    const headers = ["ID", "Name",  "Model", "Serial", "Quantity", "Issued To"]
     const csvContent = [
       headers.join(","),
       ...filteredProducts.map((product) =>
         [
           product.id,
           `"${product.name}"`,
-          `"${product.make}"`,
+          // `"${product.make}"`,
           `"${product.model}"`,
           `"${product.serial}"`,
           product.quantity,
@@ -328,7 +328,7 @@ export default function Products() {
                     <TableRow className="bg-muted/50">
                       <TableHead>ID</TableHead>
                       <TableHead>Name</TableHead>
-                      <TableHead className="hidden md:table-cell">Make</TableHead>
+                      {/* <TableHead className="hidden md:table-cell">Make</TableHead> */}
                       <TableHead className="hidden md:table-cell">Model</TableHead>
                       <TableHead className="hidden lg:table-cell">Serial</TableHead>
                       <TableHead>Quantity</TableHead>
@@ -407,7 +407,7 @@ export default function Products() {
           </DialogHeader>
 
           <div className="space-y-4 py-4">
-            <div className="space-y-2">
+            {/* <div className="space-y-2">
               <Label htmlFor="make-filter">Make</Label>
               <Select value={filters.make} onValueChange={(value) => handleFilterChange("make", value)}>
                 <SelectTrigger id="make-filter" className="bg-background/50 border-border/50">
@@ -422,7 +422,7 @@ export default function Products() {
                   ))}
                 </SelectContent>
               </Select>
-            </div>
+            </div> */}
 
             <div className="space-y-2">
               <Label htmlFor="department-filter">Department</Label>

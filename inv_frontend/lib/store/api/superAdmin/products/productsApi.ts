@@ -96,12 +96,13 @@ export interface Products {
     purchaseDate?: Date;     // Date type for purchase
     invoiceNumber?: string;  // Invoice number
     assetName?: string;      // Asset name
-    makeModel?: string;      // Make and model
+    // make
+    Model?: string;      // Make and model
     productSerialNumber?: string; // Product serial number
     vendorName?: string;     // Vendor's name
     quantity?: number;       // Quantity of Productss
     rateIncludingTaxes?: number; // Rate with taxes included
-    similarName?: string;    // A similar or related name
+    // similarName?: string;    // A similar or related name
     category?: any,
     issuedTo?: string;   
 

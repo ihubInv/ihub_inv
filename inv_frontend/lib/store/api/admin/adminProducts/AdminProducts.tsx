@@ -80,7 +80,7 @@ export interface Products {
   _id:any;              
   UniqueID: string;       
   ItemName: string;      
-  Make: string;      
+  // Make: string;      
   ModelNumber: string; 
   SerialNumber: string;
   Quantity: number;       

@@ -39,14 +39,14 @@ export default function AddAsset() {
     PurchaseDate: "",
     InvoiceNumber: "",
     AssetName: "",
-    Make: "",
+    // Make: "",
     Model: "",
     ProductSerialNumber: "",
     SerialNumber: "",
     VendorName: "",
     Quantity: "",
     RateIncludingTaxes: "",
-    SimilarName: "",
+    // SimilarName: "",
     Category: "",
     IssuedTo: "",
     SessionStartDate: "",
@@ -97,12 +97,12 @@ export default function AddAsset() {
         InvoiceNumber: formData.InvoiceNumber,
         AssetName: formData.AssetName,
         Model: formData.Model,
-        Make: formData.Make,
+        // Make: formData.Make,
         ProductSerialNumber: formData.SerialNumber,
         VendorName: formData.VendorName,
         Quantity: Number(formData.Quantity),
         RateIncludingTaxes: Number(formData.RateIncludingTaxes),
-        SimilarName: formData.SimilarName,
+        // SimilarName: formData.SimilarName,
         Category: formData.Category,
         IssuedTo: formData.IssuedTo,
         SessionStartDate: formData.SessionStartDate ? new Date(formData.SessionStartDate) : undefined,
@@ -114,14 +114,14 @@ export default function AddAsset() {
         PurchaseDate: "",
         InvoiceNumber: "",
         AssetName: "",
-        Make: "",
+        // Make: "",
         Model: "",
         ProductSerialNumber: "",
         SerialNumber: "",
         VendorName: "",
         Quantity: "",
         RateIncludingTaxes: "",
-        SimilarName: "",
+        // SimilarName: "",
         Category: "",
         IssuedTo: "",
         SessionStartDate: "",
@@ -309,14 +309,14 @@ export default function AddAsset() {
           PurchaseDate: reverseFormatDate(row['Purchase Date']),
           InvoiceNumber: row['Invoice Number'],
           AssetName: row['Asset Name'],
-          Make: row['Make'],
+          // Make: row['Make'],
           Model: row['Model'],
           ProductSerialNumber: row['Product Serial Number'] || row['SerialNumber'],
           VendorName: row['Vendor Name'],
           Quantity: Number(row['Quantity']),
           RateIncludingTaxes: Number(row['Rate (Including Taxes)']),
           Category: row['Category'],
-          SimilarName: row['Similar Name'],
+          // SimilarName: row['Similar Name'],
           IssuedTo: row['Issued To'],
         }));
 
@@ -548,10 +548,10 @@ export default function AddAsset() {
                         />
                       </div>
 
-                      <div className="space-y-2">
+                      {/* <div className="space-y-2">
                         <Label htmlFor="Make">Make</Label>
                         <Input id="Make" name="Make" value={formData.Make} onChange={handleChange} required />
-                      </div>
+                      </div> */}
 
                       <div className="space-y-2">
                         <Label htmlFor="Model">Model</Label>
@@ -607,7 +607,7 @@ export default function AddAsset() {
                         />
                       </div>
 
-                      <div className="space-y-2">
+                      {/* <div className="space-y-2">
                         <Label htmlFor="similarName">Similar Name</Label>
                         <Input
                           id="SimilarName"
@@ -615,7 +615,7 @@ export default function AddAsset() {
                           value={formData.SimilarName}
                           onChange={handleChange}
                         />
-                      </div>
+                      </div> */}
 
                       <div className="space-y-2">
                         <Label htmlFor="Category">Category</Label>

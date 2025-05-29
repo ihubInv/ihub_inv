@@ -18,7 +18,7 @@ export default function AddProduct() {
   const [formData, setFormData] = useState({
     uniqueId: "",
     itemName: "",
-    make: "",
+    // make: "",
     modelNumber: "",
     serialNumber: "",
     quantity: "",
@@ -102,7 +102,7 @@ export default function AddProduct() {
       setFormData({
         uniqueId: "",
         itemName: "",
-        make: "",
+        // make: "",
         modelNumber: "",
         serialNumber: "",
         quantity: "",
@@ -220,7 +220,7 @@ export default function AddProduct() {
                   {errors.itemName && <p className="text-xs text-red-500 mt-1">{errors.itemName}</p>}
                 </motion.div>
 
-                <motion.div className="space-y-2" variants={itemVariants}>
+                {/* <motion.div className="space-y-2" variants={itemVariants}>
                   <Label htmlFor="make">Make</Label>
                   <Input
                     id="make"
@@ -230,7 +230,7 @@ export default function AddProduct() {
                     required
                     className="bg-background/50 border-border/50 focus:border-primary input-neon"
                   />
-                </motion.div>
+                </motion.div> */}
 
                 <motion.div className="space-y-2" variants={itemVariants}>
                   <Label htmlFor="modelNumber">Model Number</Label>

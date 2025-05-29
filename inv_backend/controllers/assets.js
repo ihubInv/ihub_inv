@@ -397,10 +397,10 @@ exports.bulkUploadAssets = async (req, res) => {
     // Step 4: Prepare asset documents with converted category IDs
     const assets = data.map(row => ({
       AssetName: row.AssetName,
-      SimilarName: row.SimilarName,
+      // SimilarName: row.SimilarName,
       InvoiceNumber: row.InvoiceNumber,
       IssuedTo: row.IssuedTo,
-      Make: row.Make,
+      // Make: row.Make,
       Model: row.Model,
       ProductSerialNumber: row.ProductSerialNumber,
       PurchaseDate: row.PurchaseDate ? new Date(row.PurchaseDate) : null,

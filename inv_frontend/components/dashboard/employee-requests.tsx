@@ -503,7 +503,7 @@ export default function EmployeeRequests() {
 
               {Object.keys(specifications).length === 0 ? (
                 <div className="text-sm text-muted-foreground italic">
-                  Add specifications for the item (e.g., make, model, etc.)
+                  Add specifications for the item (e.g. model, etc.)
                 </div>
               ) : (
                 <div className="space-y-2">
