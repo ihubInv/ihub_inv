@@ -15,7 +15,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            iHub HCI Foundation
+            iHub & HCi Foundation
           </motion.h1>
           <motion.h2
             className="mt-2 text-xl font-semibold text-foreground/80"

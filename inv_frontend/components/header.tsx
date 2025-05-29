@@ -86,7 +86,7 @@ export default function Header() {
       transition={{ duration: 0.5 }}
     >
       <div>
-        <h1 className="text-xl font-semibold text-foreground neon-text">iHub HCI Foundation - Inventory Management</h1>
+        <h1 className="text-xl font-semibold text-foreground neon-text">iHub & HCi Foundation - Inventory Management</h1>
       </div>
       <div className="flex items-center space-x-4">
         <motion.button
