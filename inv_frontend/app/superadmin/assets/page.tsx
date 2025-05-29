@@ -43,88 +43,12 @@ import { useToaster } from "@/lib/context/use-toaster"
 // import { useToaster } from "@/lib/context/app-context"
 
 // Filter options for advanced filtering
-const filterOptions = [
-  {
-    id: "category",
-    label: "Category",
-    type: "select",
-    options: [
-      { value: "Computers", label: "Computers" },
-      { value: "Furniture", label: "Furniture" },
-      { value: "Software", label: "Software" },
-      { value: "Office Equipment", label: "Office Equipment" },
-      { value: "Networking", label: "Networking" },
-    ],
-    field: "category",
-  },
-  {
-    id: "make",
-    label: "Make",
-    type: "select",
-    options: [
-      { value: "Dell", label: "Dell" },
-      { value: "HP", label: "HP" },
-      { value: "Apple", label: "Apple" },
-      { value: "IKEA", label: "IKEA" },
-      { value: "Herman Miller", label: "Herman Miller" },
-      { value: "Adobe", label: "Adobe" },
-      { value: "Microsoft", label: "Microsoft" },
-      { value: "Epson", label: "Epson" },
-      { value: "Cisco", label: "Cisco" },
-      { value: "Ubiquiti", label: "Ubiquiti" },
-      { value: "APC", label: "APC" },
-      { value: "Steelcase", label: "Steelcase" },
-    ],
-    field: "make",
-  },
-  {
-    id: "status",
-    label: "Status",
-    type: "select",
-    options: [
-      { value: "Active", label: "Active" },
-      { value: "Maintenance", label: "Maintenance" },
-      { value: "Retired", label: "Retired" },
-    ],
-    field: "status",
-  },
-  {
-    id: "issuedTo",
-    label: "Issued To",
-    type: "select",
-    options: [
-      { value: "IT Department", label: "IT Department" },
-      { value: "Admin Department", label: "Admin Department" },
-      { value: "Design Team", label: "Design Team" },
-      { value: "Meeting Rooms", label: "Meeting Rooms" },
-      { value: "All Departments", label: "All Departments" },
-    ],
-    field: "issuedTo",
-  },
-  {
-    id: "purchaseDate",
-    label: "Purchase Date",
-    type: "date",
-    field: "purchaseDate",
-  },
-  {
-    id: "quantity",
-    label: "Quantity",
-    type: "number",
-    field: "Quantity",
-  },
-  {
-    id: "rateIncludingTaxes",
-    label: "Rate",
-    type: "number",
-    field: "rateIncludingTaxes",
-  },
-]
+
 
 // Fields for pivot table
 const pivotFields = {
   Category: "Category",
-  Make: "Make",
+  // Make: "Make",
   Model: "Model",
   Status: "Status",
   IssuedTo: "Issued To",
@@ -319,7 +243,7 @@ export default function Assets() {
       { header: 'Purchase Date', key: 'PurchaseDate', width: 20 },
       { header: 'Invoice Number', key: 'InvoiceNumber', width: 20 },
       { header: 'Asset Name', key: 'AssetName', width: 25 },
-      { header: 'Make', key: 'Make', width: 20 },
+      // { header: 'Make', key: 'Make', width: 20 },
       { header: 'Model', key: 'Model', width: 20 },
       {
         header: 'Product Serial Number',
@@ -330,7 +254,7 @@ export default function Assets() {
       { header: 'Quantity', key: 'Quantity', width: 15 },
       { header: 'Rate (Including Taxes)', key: 'RateIncludingTaxes', width: 20 },
       { header: 'Category', key: 'category', width: 15 },
-      { header: 'Similar Name', key: 'SimilarName', width: 20 },
+      // { header: 'Similar Name', key: 'SimilarName', width: 20 },
       { header: 'Issued To', key: 'IssuedTo', width: 20 },
     ];
     // addAndCheckCategory(inventoryData, worksheet);
@@ -344,14 +268,14 @@ export default function Assets() {
       PurchaseDate: formatDate(asset.PurchaseDate),
       InvoiceNumber: asset.InvoiceNumber,
       AssetName: asset.AssetName,
-      Make: asset.Make,
+      // Make: asset.Make,
       Model: asset.Model,
       SerialNumber: asset.ProductSerialNumber || asset.SerialNumber,
       VendorName: asset.VendorName,
       Quantity: asset.Quantity,
       RateIncludingTaxes: asset.RateIncludingTaxes,
       category: asset.Category?.name,
-      SimilarName: asset.SimilarName,
+      // SimilarName: asset.SimilarName,
       IssuedTo: asset.IssuedTo,
     }));
 
@@ -535,7 +459,7 @@ export default function Assets() {
                     <TableHead className="hidden lg:table-cell">EndDate</TableHead>
                     <TableHead>Name</TableHead>
                     <TableHead className="hidden md:table-cell">Category</TableHead>
-                    <TableHead className="hidden lg:table-cell">Make</TableHead>
+                    {/* <TableHead className="hidden lg:table-cell">Make</TableHead> */}
                     <TableHead className="hidden lg:table-cell">Model</TableHead>
                     <TableHead className="hidden xl:table-cell">PurchaseDate</TableHead>
                     <TableHead className="hidden lg:table-cell">SerialNumber</TableHead>
@@ -564,7 +488,7 @@ export default function Assets() {
                         <TableCell className="hidden md:table-cell">
                           {categories?.find(cat => cat._id === ((asset as any)?.Category?._id || (asset as any)?.Category))?.name || ''}
                         </TableCell>
-                        <TableCell className="hidden lg:table-cell">{(asset as any)?.Make}</TableCell>
+                        {/* <TableCell className="hidden lg:table-cell">{(asset as any)?.Make}</TableCell> */}
                         <TableCell className="hidden lg:table-cell">{(asset as any)?.Model}</TableCell>
                         <TableCell className="hidden xl:table-cell">{formatDate((asset as any)?.PurchaseDate)}</TableCell>
                         <TableCell className="hidden lg:table-cell">{(asset as any)?.ProductSerialNumber}</TableCell>
@@ -710,10 +634,10 @@ export default function Assets() {
                 <span className="mb-1 block font-medium">Invoice Number</span>
                 <Input name="InvoiceNumber" value={editForm.InvoiceNumber || ''} onChange={handleEditFormChange} />
               </label>
-              <label className="block">
+              {/* <label className="block">
                 <span className="mb-1 block font-medium">Make</span>
                 <Input name="Make" value={editForm.Make || ''} onChange={handleEditFormChange} />
-              </label>
+              </label> */}
               <label className="block">
                 <span className="mb-1 block font-medium">Model</span>
                 <Input name="Model" value={editForm.Model || ''} onChange={handleEditFormChange} />
@@ -757,10 +681,10 @@ export default function Assets() {
                 </select>
               </label>
 
-              <label className="block">
+              {/* <label className="block">
                 <span className="mb-1 block font-medium">Similar Name</span>
                 <Input name="SimilarName" value={editForm.SimilarName || ''} onChange={handleEditFormChange} />
-              </label>
+              </label> */}
               <label className="block">
                 <span className="mb-1 block font-medium">Issued To</span>
                 <Input name="IssuedTo" value={editForm.IssuedTo || ''} onChange={handleEditFormChange} />
